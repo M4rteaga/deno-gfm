@@ -31,6 +31,9 @@ class Renderer extends Marked.Renderer {
     if (href.startsWith("#")) {
       return `<a href="${href}" title="${title}">${text}</a>`;
     }
+    if (href.startsWith('.') && this.options.baseUrl) {
+			return `<a href="${`${this.options.baseUrl}/${href}`}" title="${title}" rel="noopener noreferrer">${text}</a>`;
+		}
     return `<a href="${href}" title="${title}" rel="noopener noreferrer">${text}</a>`;
   }
 }
